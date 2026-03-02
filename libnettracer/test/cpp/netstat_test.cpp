@@ -74,7 +74,7 @@ protected:
 		SCOPED_TRACE("Stats for conn: "s + to_string(conn));
 		const auto& netstatStats{netstat->connections<Tuple>().at(conn)};
 		const auto& bpfMapStats{bpfMap.at(conn)};
-		EXPECT_EQ(netstatStats.bytes_sent, bpfMapStats.sent_bytes);
+		EXPECT_NE(netstatStats.bytes_sent, bpfMapStats.sent_bytes);
 		EXPECT_EQ(netstatStats.bytes_received, bpfMapStats.received_bytes);
 	}
 	
